@@ -1,13 +1,24 @@
 import { useState, useEffect, useCallback } from "react";
 
 // ── CONFIGURACIÓN ──────────────────────────────────────────────────────────
-const API_URL  = "https://companero-virtual.onrender.com";
-const API_KEY  = "companero-admin-2024";
-const HEADERS  = { "Content-Type": "application/json", "x-api-key": API_KEY };
+const API_URL = "https://companero-virtual.onrender.com";
+// La clave NO se guarda en el código. Se toma de la sesión (la escribe el admin al entrar).
+const getKey = () => localStorage.getItem("cv_admin_key") || "";
 
 // ── HELPERS ────────────────────────────────────────────────────────────────
 const apiFetch = (path, opts = {}) =>
-  fetch(`${API_URL}${path}`, { headers: HEADERS, ...opts }).then(r => r.json());
+  fetch(`${API_URL}${path}`, {
+    ...opts,
+    headers: { "Content-Type": "application/json", "x-api-key": getKey(), ...(opts.headers || {}) },
+  }).then(r => {
+    if (r.status === 401 || r.status === 403) {
+      // Clave inválida o expirada: cerrar sesión y volver al login
+      localStorage.removeItem("cv_admin_key");
+      window.location.href = "/admin/login";
+      return {};
+    }
+    return r.json();
+  });
 
 const fmt = n => (n ?? 0).toLocaleString("es-MX");
 const planColor = {
