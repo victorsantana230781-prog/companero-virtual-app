@@ -1,0 +1,21 @@
+CÓMO AGREGAR TUS FOTOS REALES A LA LANDING
+==========================================
+
+Solo coloca aquí tus fotos con EXACTAMENTE estos nombres y aparecerán
+automáticamente en la página (no hay que tocar el código):
+
+  foto1.jpg      → Banda superior: adulto mayor feliz usando WhatsApp/teléfono
+  foto2.jpg      → Banda media: adulto mayor sonriendo mientras juega/aprende
+  alertas.jpg    → Sección "Alertas a familiares": familia tranquila con su celular
+  juegos.jpg     → Sección "Juegos mentales": persona mayor jugando/pensando
+  emergencia.jpg → Sección "Contacto de emergencia": persona mayor con su teléfono
+
+Recomendaciones:
+- Formato .jpg (o renombra tu .png a .jpg).
+- Horizontales, mínimo 1200px de ancho para que se vean nítidas.
+- USA FOTOS PROPIAS o de bancos con licencia (Unsplash, Pexels son gratuitos).
+  Evita fotos sacadas de Google sin permiso.
+
+Mientras no pongas las fotos, se muestra una ilustración con degradado cálido
+(se ve bien igual). En cuanto subas el archivo con el nombre correcto y hagas
+deploy, la foto real reemplaza la ilustración sola.
