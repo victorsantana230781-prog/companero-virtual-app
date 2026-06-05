@@ -53,7 +53,7 @@ const STYLE = `
 /* PHOTO blocks (expand on scroll) */
 .cv-photoband { padding: 60px 48px; background: var(--cream); }
 .cv-photo { position: relative; width: 100%; max-width: 1000px; margin: 0 auto; aspect-ratio: 16/8; border-radius: 28px; overflow: hidden; box-shadow: 0 30px 70px rgba(28,26,23,0.18); background: linear-gradient(135deg, var(--warm-lt) 0%, #F3DFCF 50%, var(--green-lt) 100%); display: flex; align-items: center; justify-content: center; will-change: transform; }
-.cv-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cv-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
 .cv-photo .cv-photo-illus { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 24px; }
 .cv-photo .cv-photo-illus .emoji { font-size: clamp(48px, 8vw, 96px); filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12)); }
 .cv-photo .cv-photo-illus .cap { font-family: var(--serif); font-style: italic; font-size: clamp(15px, 2vw, 20px); color: var(--ink-soft); max-width: 520px; }
@@ -75,7 +75,7 @@ const STYLE = `
 .cv-landing .spotlight { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1100px; margin: 0 auto; }
 .cv-landing .spotlight.rev .spot-media { order: -1; }
 .cv-landing .spot-media { border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 24px 60px rgba(28,26,23,0.16); position: relative; will-change: transform; display:flex; align-items:center; justify-content:center; }
-.cv-landing .spot-media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.cv-landing .spot-media img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position: center 25%; }
 .cv-landing .spot-media .cv-photo-illus .emoji { font-size: clamp(40px,6vw,80px); }
 .cv-landing .spot-media .cv-photo-illus .cap { font-family: var(--serif); font-style: italic; color: var(--ink-soft); padding: 0 20px; text-align:center; }
 .cv-landing .spot-alert { background: linear-gradient(135deg, var(--blue-lt), #EAF3FA); }
