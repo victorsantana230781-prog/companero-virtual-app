@@ -127,6 +127,7 @@ function PromptModal({ client, onClose, onSave }) {
 export default function AdminDashboard() {
   const [stats,      setStats]      = useState(null);
   const [clients,    setClients]    = useState([]);
+  const [insights,   setInsights]   = useState(null);
   const [loading,    setLoading]    = useState(true);
   const [twilio,     setTwilio]     = useState(null);
   const [promptFor,  setPromptFor]  = useState(null);
@@ -137,12 +138,14 @@ export default function AdminDashboard() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const [s, c] = await Promise.all([
+      const [s, c, i] = await Promise.all([
         apiFetch("/admin/stats"),
         apiFetch("/admin/clients?limit=100"),
+        apiFetch("/admin/insights?days=30"),
       ]);
       setStats(s);
       setClients(c.data ?? []);
+      setInsights(i);
     } catch (e) { console.error(e); }
     setLoading(false);
   }, []);
@@ -227,7 +230,7 @@ export default function AdminDashboard() {
 
         {/* ── TABS ── */}
         <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 w-fit shadow-sm border border-gray-100">
-          {[["overview","📊 Resumen"], ["clients","👥 Clientes"], ["prompts","🧠 Prompts IA"]].map(([key, label]) => (
+          {[["overview","📊 Resumen"], ["clients","👥 Clientes"], ["prompts","🧠 Prompts IA"], ["trends","📈 Tendencias"]].map(([key, label]) => (
             <button
               key={key}
               onClick={() => setTab(key)}
@@ -402,6 +405,53 @@ export default function AdminDashboard() {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+        {/* ════════════════════ TAB: TENDENCIAS ════════════════════ */}
+        {tab === "trends" && (
+          <div className="flex flex-col gap-4">
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-800">
+              📈 Lo que tus usuarios más piden (últimos 30 días). Úsalo para decidir qué cursos o temas ofrecer.
+              Muchos los puede dar el bot <strong>sin costo extra</strong>; otros pueden ser un <strong>add-on de pago</strong>.
+            </div>
+
+            {(!insights || (insights.topics ?? []).length === 0) ? (
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center text-gray-400 text-sm">
+                Aún no hay solicitudes registradas. Conforme los usuarios pidan temas o cursos, aparecerán aquí.
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <MetricCard icon="🔎" label="Solicitudes (30d)" value={fmt(insights.totalSignals)} />
+                  <MetricCard icon="🏷️" label="Temas distintos" value={fmt(insights.topics.length)} color="text-blue-600" />
+                  <MetricCard icon="🥇" label="Más pedido" value={insights.topics[0]?.topic ?? "—"} color="text-amber-600" />
+                  <MetricCard icon="👥" label="Lo piden" value={`${fmt(insights.topics[0]?.uniqueUsers ?? 0)} pers.`} />
+                </div>
+
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-gray-100 text-xs text-gray-400 font-medium uppercase tracking-wide">
+                        <th className="text-left px-5 py-3">#</th>
+                        <th className="text-left px-4 py-3">Tema solicitado</th>
+                        <th className="text-right px-4 py-3">Veces pedido</th>
+                        <th className="text-right px-5 py-3">Personas distintas</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                      {insights.topics.map((t, idx) => (
+                        <tr key={t.topic} className="hover:bg-gray-50/50">
+                          <td className="px-5 py-3 text-gray-400">{idx + 1}</td>
+                          <td className="px-4 py-3 font-medium text-gray-800">{t.topic.replace(/_/g, " ")}</td>
+                          <td className="px-4 py-3 text-right font-mono text-gray-600">{fmt(t.count)}</td>
+                          <td className="px-5 py-3 text-right font-mono text-gray-600">{fmt(t.uniqueUsers)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
           </div>
         )}
       </main>
