@@ -71,6 +71,39 @@ const STYLE = `
 .cv-landing .feature-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--warm-lt); color: var(--warm); font-size: 22px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
 .cv-landing .feature-card h3 { font-family: var(--serif); font-size: 18px; margin-bottom: 8px; }
 .cv-landing .feature-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+/* ── FAMILY PEACE PREMIUM SECTION ────────────────────────────────────────── */
+.cv-landing .fp-section { background: linear-gradient(160deg, #0F0E0C 0%, #1A1035 55%, #0F0E0C 100%); color: white; position: relative; overflow: hidden; }
+.cv-landing .fp-section::before { content:''; position:absolute; top:-200px; right:-200px; width:700px; height:700px; background:radial-gradient(circle,rgba(130,80,255,.18) 0%,transparent 70%); pointer-events:none; }
+.cv-landing .fp-section::after { content:''; position:absolute; bottom:-200px; left:-200px; width:550px; height:550px; background:radial-gradient(circle,rgba(232,89,60,.14) 0%,transparent 70%); pointer-events:none; }
+.cv-landing .fp-header { text-align:center; max-width:680px; margin:0 auto 72px; position:relative; z-index:1; }
+.cv-landing .fp-pill { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,rgba(130,80,255,.25),rgba(232,89,60,.2)); border:1px solid rgba(255,255,255,.15); border-radius:100px; padding:8px 20px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.9); margin-bottom:24px; }
+.cv-landing .fp-header h2 { font-family:var(--serif); font-size:clamp(30px,4vw,52px); line-height:1.15; color:white; margin-bottom:20px; }
+.cv-landing .fp-header h2 em { color:#A78BFA; font-style:italic; }
+.cv-landing .fp-header p { font-size:18px; color:rgba(255,255,255,.6); max-width:520px; margin:0 auto; }
+.cv-landing .fp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+.cv-landing .fp-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:32px 28px; transition:all .3s; backdrop-filter:blur(12px); position:relative; overflow:hidden; }
+.cv-landing .fp-card::after { content:''; position:absolute; inset:0; border-radius:20px; opacity:0; transition:opacity .3s; }
+.cv-landing .fp-card.fp-sos::after { background:linear-gradient(135deg,rgba(255,71,87,.08),transparent); }
+.cv-landing .fp-card.fp-checkin::after { background:linear-gradient(135deg,rgba(255,165,2,.08),transparent); }
+.cv-landing .fp-card.fp-silence::after { background:linear-gradient(135deg,rgba(46,213,115,.08),transparent); }
+.cv-landing .fp-card.fp-geo::after { background:linear-gradient(135deg,rgba(30,144,255,.08),transparent); }
+.cv-landing .fp-card.fp-summary::after { background:linear-gradient(135deg,rgba(162,155,254,.08),transparent); }
+.cv-landing .fp-card:hover { transform:translateY(-6px); border-color:rgba(255,255,255,.22); box-shadow:0 28px 64px rgba(0,0,0,.45); }
+.cv-landing .fp-card:hover::after { opacity:1; }
+.cv-landing .fp-icon { width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:26px; margin-bottom:20px; }
+.cv-landing .fp-icon-sos { background:linear-gradient(135deg,#FF4757,#FF6B81); }
+.cv-landing .fp-icon-checkin { background:linear-gradient(135deg,#FFA502,#FFD700); }
+.cv-landing .fp-icon-silence { background:linear-gradient(135deg,#2ED573,#1E90FF); }
+.cv-landing .fp-icon-geo { background:linear-gradient(135deg,#1E90FF,#00D2FF); }
+.cv-landing .fp-icon-summary { background:linear-gradient(135deg,#A29BFE,#6C5CE7); }
+.cv-landing .fp-card-badge { display:inline-block; background:rgba(167,139,250,.18); border:1px solid rgba(167,139,250,.35); color:#A78BFA; border-radius:100px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:.08em; margin-bottom:12px; }
+.cv-landing .fp-card h3 { font-family:var(--serif); font-size:20px; color:white; margin-bottom:10px; }
+.cv-landing .fp-card p { font-size:14px; color:rgba(255,255,255,.6); line-height:1.65; }
+.cv-landing .fp-tag { display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:12px; color:rgba(255,255,255,.4); }
+.cv-landing .fp-cta-wrap { text-align:center; margin-top:64px; position:relative; z-index:1; }
+.cv-landing .fp-cta-wrap p { color:rgba(255,255,255,.45); font-size:13px; margin-top:14px; }
+.cv-landing .btn-gradient { background:linear-gradient(135deg,#8250FF,#E8593C); color:white; border:none; border-radius:100px; padding:16px 44px; font-family:var(--sans); font-size:16px; font-weight:500; cursor:pointer; transition:all .25s; text-decoration:none; display:inline-block; }
+.cv-landing .btn-gradient:hover { transform:translateY(-2px); box-shadow:0 12px 36px rgba(130,80,255,.4); filter:brightness(1.1); }
 /* SPOTLIGHT split sections */
 .cv-landing .spotlight { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1100px; margin: 0 auto; }
 .cv-landing .spotlight.rev .spot-media { order: -1; }
@@ -279,6 +312,61 @@ const BODY = `
   </div>
 </section>
 
+<section class="fp-section" id="tranquilidad">
+  <div class="fp-header cv-reveal">
+    <div class="fp-pill">🛡️ Exclusivo Premium &amp; Familiar</div>
+    <h2>5 escudos de tranquilidad<br>para <em>tu familia</em></h2>
+    <p>Mientras trabajas o descansas, Compañero Virtual cuida a mamá y te mantiene informado. En tiempo real, por WhatsApp.</p>
+  </div>
+  <div class="fp-grid">
+
+    <div class="fp-card fp-sos cv-reveal">
+      <div class="fp-icon fp-icon-sos">🆘</div>
+      <div class="fp-card-badge">INMEDIATO</div>
+      <h3>Botón de pánico SOS</h3>
+      <p>Mamá escribe <strong style="color:rgba(255,255,255,.85)">"AYUDA"</strong> o <strong style="color:rgba(255,255,255,.85)">"SOS"</strong> y en segundos toda la familia recibe una alerta por WhatsApp. Sin apps, sin botones físicos.</p>
+      <div class="fp-tag">⚡ Respuesta en menos de 30 segundos</div>
+    </div>
+
+    <div class="fp-card fp-checkin cv-reveal">
+      <div class="fp-icon fp-icon-checkin">🌅</div>
+      <div class="fp-card-badge">DIARIO</div>
+      <h3>Buenos días automático</h3>
+      <p>Cada mañana el bot saluda a mamá y verifica cómo amanece. Si no responde en 2 horas, avisa a la familia antes de que tengas que preocuparte.</p>
+      <div class="fp-tag">🕗 Todos los días a las 8 a.m.</div>
+    </div>
+
+    <div class="fp-card fp-silence cv-reveal">
+      <div class="fp-icon fp-icon-silence">😶</div>
+      <div class="fp-card-badge">MONITOREO</div>
+      <h3>Alerta de silencio prolongado</h3>
+      <p>24 horas sin escribir → aviso suave a la familia. 48 horas → alerta urgente. Cuando regresa al chat, avisa que ya está bien.</p>
+      <div class="fp-tag">🔔 Alertas graduales e inteligentes</div>
+    </div>
+
+    <div class="fp-card fp-geo cv-reveal">
+      <div class="fp-icon fp-icon-geo">📍</div>
+      <div class="fp-card-badge">TIEMPO REAL</div>
+      <h3>Geolocalización de salidas</h3>
+      <p>Mamá dice "voy al mercado" → el bot le pide su ubicación. Ella la comparte con un tap en WhatsApp y la familia la recibe al instante.</p>
+      <div class="fp-tag">📱 Nativo de WhatsApp, sin apps extra</div>
+    </div>
+
+    <div class="fp-card fp-summary cv-reveal">
+      <div class="fp-icon fp-icon-summary">📋</div>
+      <div class="fp-card-badge">SEMANAL</div>
+      <h3>Resumen semanal para la familia</h3>
+      <p>Cada domingo reciben: cuántos días estuvo activa, pastillas confirmadas, estado de ánimo general y momentos especiales de la semana.</p>
+      <div class="fp-tag">📊 Llega automático cada domingo</div>
+    </div>
+
+  </div>
+  <div class="fp-cta-wrap cv-reveal">
+    <a href="#planes" class="btn-gradient">Ver planes con estas funciones →</a>
+    <p>Disponible en planes Premium y Familiar · Sin configuración extra · Solo WhatsApp</p>
+  </div>
+</section>
+
 <section class="pricing" id="planes">
   <div style="text-align:center" class="cv-reveal">
     <div class="section-tag">Precios</div>
@@ -298,14 +386,14 @@ const BODY = `
       <div class="plan-name">Premium</div>
       <div class="plan-price">$249 <span>MXN/mes</span></div>
       <div class="plan-sub">Para la experiencia completa</div>
-      <ul class="plan-features"><li>Todo lo del plan Básico</li><li>Mensajes de voz (audios)</li><li>Análisis de imágenes y recetas</li><li>Idiomas y Lengua de Señas (LSM)</li><li>1 usuario prioritario</li></ul>
+      <ul class="plan-features"><li>Todo lo del plan Básico</li><li>Mensajes de voz (audios)</li><li>Análisis de imágenes y recetas</li><li>🆘 Botón SOS de emergencia</li><li>🌅 Check-in matutino diario</li><li>📍 Geolocalización de salidas</li><li>📋 Resumen semanal a la familia</li><li>Idiomas y Lengua de Señas (LSM)</li><li>1 usuario prioritario</li></ul>
       <a class="btn-plan" data-cta data-plan="PREMIUM">Empezar gratis</a>
     </div>
     <div class="plan cv-reveal">
       <div class="plan-name">Familiar</div>
       <div class="plan-price">$399 <span>MXN/mes</span></div>
       <div class="plan-sub">Para toda la familia</div>
-      <ul class="plan-features"><li>Todo lo del plan Premium</li><li>Hasta 3 adultos mayores</li><li>Alertas de bienestar a familiares</li><li>Panel familiar de seguimiento</li><li>Soporte prioritario</li></ul>
+      <ul class="plan-features"><li>Todo lo del plan Premium</li><li>Hasta 3 adultos mayores</li><li>🛡️ Los 5 escudos de tranquilidad</li><li>😶 Alerta de silencio 24/48h</li><li>Alertas de bienestar a familiares</li><li>Panel familiar de seguimiento</li><li>Soporte prioritario</li></ul>
       <a class="btn-plan" data-cta data-plan="FAMILY">Empezar gratis</a>
     </div>
   </div>
