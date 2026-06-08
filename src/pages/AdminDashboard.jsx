@@ -333,7 +333,17 @@ export default function AdminDashboard() {
                         {c.lastSeenAt ? new Date(c.lastSeenAt).toLocaleDateString("es-MX") : "—"}
                       </td>
                       <td className="px-5 py-3 text-right">
-                        <div className="flex gap-1 justify-end">
+                        <div className="flex gap-1 justify-end flex-wrap">
+                          <button
+                            onClick={async () => {
+                              if (!confirm(`¿Activar piloto PREMIUM gratuito por 3 meses para ${c.name || c.phoneNumber}?`)) return;
+                              await updateClient(c.id, { status: "ACTIVE", plan: "PREMIUM" });
+                            }}
+                            title="Acceso PREMIUM gratuito — ideal para pilotos"
+                            className="px-2.5 py-1 text-xs rounded-lg bg-purple-100 text-purple-700 hover:bg-purple-200 font-medium"
+                          >
+                            🎁 Piloto
+                          </button>
                           {c.subscriptionStatus === "SUSPENDED" ? (
                             <button
                               onClick={() => updateClient(c.id, { status: "ACTIVE" })}
